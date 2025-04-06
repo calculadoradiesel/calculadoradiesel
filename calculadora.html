@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Combustible</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #4361ee;
+            --color-secondary: #3f37c9;
+            --color-accent: #4cc9f0;
+            --color-light: #f8f9fa;
+            --color-dark: #212529;
+            --gradient-bg: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .calculator {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            color: white;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            max-width: 180px;
+            height: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.3);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--color-accent);
+            color: var(--color-dark);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 #3a86b4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: #72efdd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #3a86b4;
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #3a86b4;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+            animation: fadeIn 0.5s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: none;
+        }
+
+        .result h2 {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            button {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="logo-container">
+            <!-- Reemplaza con tu logo -->
+            <img src="ft/logo-wawa.png" alt="Logo" class="logo">
+        </div>
+        
+        <h1>Calculadora de Combustible</h1>
+        
+        <div class="input-group">
+            <label for="combustible">Combustible Habilitado (Lts)</label>
+            <input type="number" id="combustible" placeholder="Ej: 120" step="0.01">
+        </div>
+        
+        <div class="input-group">
+            <label for="residuo">Residuo en Tanque (Lts)</label>
+            <input type="number" id="residuo" placeholder="Ej: 15" step="0.01">
+        </div>
+        
+        <div class="input-group">
+            <label for="consumo">Índice de Consumo (Km/Lt)</label>
+            <input type="number" id="consumo" placeholder="Ej: 8.5" step="0.1">
+        </div>
+        
+        <div class="input-group">
+            <label for="km">Kilómetros Recorridos (Km)</label>
+            <input type="number" id="km" placeholder="Ej: 350" step="0.01">
+        </div>
+        
+        <button id="calcular">Calcular Combustible</button>
+        
+        <div class="result" id="resultado">
+            <h2>Combustible Restante</h2>
+            <p id="result-value">0.00 Litros</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnCalcular = document.getElementById('calcular');
+            const resultadoDiv = document.getElementById('resultado');
+            const resultValue = document.getElementById('result-value');
+            
+            btnCalcular.addEventListener('click', function() {
+                // Obtener valores de los inputs
+                const combustible = parseFloat(document.getElementById('combustible').value) || 0;
+                const residuo = parseFloat(document.getElementById('residuo').value) || 0;
+                const consumo = parseFloat(document.getElementById('consumo').value) || 1;
+                const km = parseFloat(document.getElementById('km').value) || 0;
+                
+                // Calcular
+                const totalCombustible = combustible + residuo;
+                const combustibleConsumido = km / consumo;
+                const combustibleRestante = totalCombustible - combustibleConsumido;
+                
+                // Mostrar resultado
+                resultValue.textContent = combustibleRestante.toFixed(2) + ' Litros';
+                resultadoDiv.style.display = 'block';
+                
+                // Cambiar color según el nivel
+                if(combustibleRestante < totalCombustible * 0.2) {
+                    resultadoDiv.style.backgroundColor = 'rgba(220, 53, 69, 0.3)';
+                    resultadoDiv.style.borderColor = 'rgba(220, 53, 69, 0.5)';
+                } else if(combustibleRestante < totalCombustible * 0.5) {
+                    resultadoDiv.style.backgroundColor = 'rgba(255, 193, 7, 0.3)';
+                    resultadoDiv.style.borderColor = 'rgba(255, 193, 7, 0.5)';
+                } else {
+                    resultadoDiv.style.backgroundColor = 'rgba(40, 167, 69, 0.3)';
+                    resultadoDiv.style.borderColor = 'rgba(40, 167, 69, 0.5)';
+                }
+            });
+            
+            // Validación para evitar números negativos
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    if(this.value < 0) this.value = 0;
+                    if(this.id === 'consumo' && this.value <= 0) this.value = 1;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
