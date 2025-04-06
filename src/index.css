@@ -1,0 +1,165 @@
+/* Fuente y fondo elegante */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --color-primary: #4361ee;
+  --color-secondary: #3f37c9;
+  --color-accent: #4cc9f0;
+  --color-light: #f8f9fa;
+  --color-dark: #212529;
+  --gradient-bg: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--gradient-bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Contenedor principal con efecto vidrio (glassmorphism) */
+.app {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 30px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  color: white;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.logo {
+  max-width: 180px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Grupos de inputs */
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.3);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Botón con efecto 3D */
+button {
+  width: 100%;
+  padding: 16px;
+  background: var(--color-accent);
+  color: var(--color-dark);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #3a86b4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: #72efdd;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #3a86b4;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #3a86b4;
+}
+
+/* Resultado con animación */
+.resultado {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  animation: fadeIn 0.5s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.resultado h2 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  button {
+    padding: 14px;
+  }
+}
